@@ -38,7 +38,7 @@
 
 class StockTrader:
     def __init__(self):
-        # Set variables if you want
+        self.days = 0
         pass
 
     # Controls how difficult the simulation is:
@@ -63,7 +63,9 @@ class StockTrader:
         syms = market.getStockSymbols()
         for sym in syms:
             price = market.getPrice(sym)
-            if price < 10 and account.getBalance() >= price:
+            if price > 35 and account.getBalance() >= price:
                 market.buy(account, sym, 1)
-            if price > 10 and account.getShares(sym) > 0:
+            # if (price > 70 and account.getShares(sym) > 0) or self.days > 2:
+            if account.getShares(sym) > 0 and (price > 70 or self.days > 2):
                 market.sell(account, sym, 1)
+        self.days = self.days + 1
