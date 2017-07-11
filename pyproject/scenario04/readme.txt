@@ -39,4 +39,6 @@
     get_player_ids () -> list of player identifiers (ints)
         Returns a complete list of every player in the game (players are represented by a numeric id)
 
+     set_velocity (vx,vy)
+
 ------------------------------------------------------------------------------------------------------------------------
