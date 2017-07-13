@@ -1,0 +1,35 @@
+import ccircle
+image = ccircle.Image('Connect4Board.png')
+window = ccircle.Window()
+
+
+while window.isOpen():
+    window.clear(0, 0, 1)
+
+    window.drawLine(300, 0, 300, 2000, 5, 1, 1, 1)
+    window.drawLine(600, 0, 600, 2000, 5, 1, 1, 1)
+    window.drawLine(800, 0, 800, 2000, 5, 1, 1, 1)
+    window.drawLine(1000, 0, 1000, 2000, 5, 1, 1, 1)
+    window.drawLine(1200, 0, 1200, 2000, 5, 1, 1, 1)
+    window.drawLine(1400, 0, 1400, 2000, 5, 1, 1, 1)
+    window.drawLine(0, 120, 2000, 120, 5, 1, 1, 1)
+    window.drawLine(0, 300, 2000, 300, 5, 1, 1, 1)
+    window.drawLine(0, 440, 2000, 440, 5, 1, 1, 1)
+    window.drawLine(0, 590, 2000, 590, 5, 1, 1, 1)
+    window.drawLine(0, 720, 2000, 720, 5, 1, 1, 1)
+    window.drawLine(30, 30, 200, 100, 4, 1, 0, 0)
+    window.drawLine(200, 30, 30, 100, 4, 1, 0, 0)
+    window.drawLine(30, 150, 200, 300, 4, 1, 1, 0)
+    window.drawLine(30, 280, 260, 150, 4, 1, 1, 0)
+    window.drawLine(30, 330, 290, 390, 4, 1, 0, 0)
+    window.drawLine(30, 400, 290, 320, 4, 1, 0, 0)
+    window.drawLine(50, 590, 260, 490, 4, 1, 1, 0)
+    window.drawLine(20, 460, 200, 590, 4, 1, 1, 0)
+    window.drawLine(30, 610, 260, 690, 4, 1, 0, 0)
+    window.drawLine(30, 680, 260, 610, 4, 1, 0, 0)
+    window.drawLine(30, 730, 270, 810, 4, 1, 1, 0)
+    window.drawLine(30, 800, 270, 730, 4, 1, 1, 0)
+    window.drawLine(300, 720, 600, 840, 4, 1, 1, 0)
+    window.drawLine(600, 720, 300, 840, 4, 1, 1, 0)
+
+    window.update()
