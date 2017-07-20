@@ -2,37 +2,32 @@ import ccircle
 window = ccircle.Window()
 window.toggleMaximized()
 
-ccircle.isMouseDown('left')
-def click(c, p):
-    if c == True and p == False:
-        return True
-    return False
+font = ccircle.Font('NovaFlat.ttf')
+font.drawCentered('GAME!', 684, 417, 10, 1, 0, 0)
 
-past = False
-current = False
+winner = None
+
+turn = True
 
 data = [
-    ["R", 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, "Y", 0, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0]
 ]
 
 def drawBoard(data, window):
     for y in range(6):
         for x in range(7):
             if data[y][x] == "R":
-                window.drawLine(x*228, y*139, (x+1)*228, (y+1)*139, 4, 1, 0, 0)
-                window.drawLine(x*228, y*139, (x+1)*228, (y+1)*139, 4, 1, 0, 0)
+                window.drawLine(x*228, (y+0)*139, (x+1)*228, (y+1)*139, 4, 1, 0, 0)
+                window.drawLine(x*228, (y+1)*139, (x+1)*228, (y+0)*139, 4, 1, 0, 0)
             if data[y][x] == "Y":
-                window.drawLine(684, 695, 912, 840, 4, 1, 1, 0)
-                window.drawLine(684, 840, 912, 695, 4, 1, 1, 0)
-            '''if 5 == "R":
-               pass
-            if 0 == "Y":
-                pass'''
+                window.drawLine(x*228, (y+0)*139, (x+1)*228, (y+1)*139, 4, 1, 1, 0)
+                window.drawLine(x*228, (y+1)*139, (x+1)*228, (y+0)*139, 4, 1, 1, 0)
+
 
 
 def getColumn(): # Should return the column that the mouse is in each time called
@@ -85,8 +80,24 @@ while window.isOpen():
 
     drawBoard(data, window)
 
-    if click(0, 0):
-        print('Click')
+    keyPressed = ccircle.wasKeyPressed('space')
+    if keyPressed:
+        turn = not turn
+        if turn:
+            data[getRow()][getColumn()] = "R"
+        if not turn:
+            data[getRow()][getColumn()] = "Y"
+
+    for y in range(2):
+        for x in range(3):
+            h = True
+            cell = data[y][x]
+            for i in range(1, 4):
+                cell2 = data[y][x + i]
+                if cell != cell2:
+                    h = False
+            if h == True and cell != 0:
+                winner = cell
 
 
     window.update()
