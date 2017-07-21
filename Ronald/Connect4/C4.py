@@ -3,7 +3,6 @@ window = ccircle.Window()
 window.toggleMaximized()
 
 font = ccircle.Font('NovaFlat.ttf')
-font.drawCentered('GAME!', 684, 417, 10, 1, 0, 0)
 
 winner = None
 
@@ -27,7 +26,6 @@ def drawBoard(data, window):
             if data[y][x] == "Y":
                 window.drawLine(x*228, (y+0)*139, (x+1)*228, (y+1)*139, 4, 1, 1, 0)
                 window.drawLine(x*228, (y+1)*139, (x+1)*228, (y+0)*139, 4, 1, 1, 0)
-
 
 
 def getColumn(): # Should return the column that the mouse is in each time called
@@ -88,8 +86,8 @@ while window.isOpen():
         if not turn:
             data[getRow()][getColumn()] = "Y"
 
-    for y in range(2):
-        for x in range(3):
+    for y in range(6):
+        for x in range(4):
             h = True
             cell = data[y][x]
             for i in range(1, 4):
@@ -99,5 +97,42 @@ while window.isOpen():
             if h == True and cell != 0:
                 winner = cell
 
+    for y in range(3):
+        for x in range(7):
+            v = True
+            cell = data[y][x]
+            for i in range(1, 4):
+                cell3 = data[y + i][x]
+                if cell != cell3:
+                    v = False
+            if v == True and cell != 0:
+                winner = cell
+
+    for y in range(3):
+        for x in range(4):
+            d = True
+            cell = data[y + i][x + i]
+            for i in range(1, 4):
+                cell4 = data[y][x]
+                if cell != cell4:
+                    d = False
+            if d == True and cell != 0:
+                winner = cell
+
+    for y in range(3):
+        for x in range(3, 7):
+            d2 = True
+            cell = data[y + i][x - i]
+            for i in range(1, 4):
+                cell5 = data[y][x]
+                if cell != cell5:
+                    d2 = False
+            if d2 == True and cell != 0:
+                winner = cell
+
+    print(winner)
+
+    if winner == "R" or winner == "Y":
+        font.drawCentered('GAME!', 684, 417, 50, 1, 0, 0)
 
     window.update()
